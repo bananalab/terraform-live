@@ -1,0 +1,112 @@
+module "vpc" {
+  source             = "github.com/bananalab/terraform-modules//modules/aws-vpc?ref=v0.4.1"
+  cidr               = "10.0.0.0/16"
+  availability_zones = ["us-west-1b", "us-west-1c"]
+  public_subnets     = ["10.0.0.0/20", "10.0.16.0/20"]
+  private_subnets    = ["10.0.32.0/20", "10.0.48.0/20"]
+}
+
+moved {
+    from = aws_vpc.this
+    to = module.vpc.aws_vpc.this
+}
+
+moved {
+    from = aws_internet_gateway.this
+    to = module.vpc.aws_internet_gateway.this
+}
+
+moved {
+    from = aws_subnet.public["us-west-1c"]
+    to = module.vpc.aws_subnet.public["us-west-1c"]
+}
+
+moved {
+    from = aws_subnet.public["us-west-1b"]
+    to = module.vpc.aws_subnet.public["us-west-1b"]
+}
+
+moved {
+    from = aws_subnet.private["us-west-1c"]
+    to = module.vpc.aws_subnet.private["us-west-1c"]
+}
+
+moved {
+    from = aws_subnet.private["us-west-1b"]
+    to = module.vpc.aws_subnet.private["us-west-1b"]
+}
+
+moved {
+    from = aws_nat_gateway.this["us-west-1b"]
+    to = module.vpc.aws_nat_gateway.this["us-west-1b"]
+}
+
+moved {
+    from = aws_nat_gateway.this["us-west-1c"]
+    to = module.vpc.aws_nat_gateway.this["us-west-1c"]
+}
+
+moved {
+    from = aws_eip.nat["us-west-1b"]
+    to = module.vpc.aws_eip.nat["us-west-1b"]
+}
+
+moved {
+    from = aws_eip.nat["us-west-1c"]
+    to = module.vpc.aws_eip.nat["us-west-1c"]
+}
+
+moved {
+    from = aws_route.private["us-west-1b"]
+    to = module.vpc.aws_route.private["us-west-1b"]
+}
+
+moved {
+    from = aws_route.private["us-west-1c"]
+    to = module.vpc.aws_route.private["us-west-1c"]
+}
+
+moved {
+    from = aws_route_table.public
+    to = module.vpc.aws_route_table.public
+}
+
+moved {
+    from = aws_route_table.private
+    to = module.vpc.aws_route_table.private
+}
+
+moved {
+    from = aws_route.public
+    to = module.vpc.aws_route.public
+}
+
+moved {
+    from = aws_route_table_association.public["us-west-1b"]
+    to = module.vpc.aws_route_table_association.public["us-west-1b"]
+}
+
+moved {
+    from = aws_route_table_association.public["us-west-1c"]
+    to = module.vpc.aws_route_table_association.public["us-west-1c"]
+}
+
+moved {
+    from = aws_route.private["us-west-1b"]
+    to = module.vpc.aws_route.private["us-west-1b"]
+}
+
+moved {
+    from = aws_route.private["us-west-1c"]
+    to = module.vpc.aws_route.private["us-west-1c"]
+}
+
+moved {
+    from = aws_route_table_association.private["us-west-1b"]
+    to = module.vpc.aws_route_table_association.private["us-west-1b"]
+}
+
+moved {
+    from = aws_route_table_association.private["us-west-1c"]
+    to = module.vpc.aws_route_table_association.private["us-west-1c"]
+}
